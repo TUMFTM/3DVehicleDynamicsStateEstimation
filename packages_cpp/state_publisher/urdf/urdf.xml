@@ -1,0 +1,46 @@
+<robot name="dallara_AV21">
+  <link name="vehicle_cg" />
+  <link name="base_link" />
+  <link name="vehicle_rear_axle_middle" />
+
+  <link name="gps_antenna_front" />
+  <link name="gps_antenna_right" />
+  <link name="gps_antenna_left" />
+  <link name="gps_antenna_top" />
+
+  <joint name="base_link_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="vehicle_cg" />
+    <origin xyz="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="vehicle_rear_axle_middle_joint" type="fixed">
+    <parent link="vehicle_cg" />
+    <child link="vehicle_rear_axle_middle" />
+    <origin xyz="-1.247 0.0 0.0" />
+  </joint>
+
+  <joint name="gps_antenna_front_joint" type="fixed">
+    <parent link="vehicle_rear_axle_middle" />
+    <child link="gps_antenna_front" />
+	  <origin xyz="3.175 0.0 0.408" />
+  </joint>
+
+  <joint name="gps_antenna_right_joint" type="fixed">
+    <parent link="vehicle_rear_axle_middle" />
+    <child link="gps_antenna_right" />
+	  <origin xyz="2.005 -0.497 0.389" />
+  </joint>
+
+  <joint name="gps_antenna_left_joint" type="fixed">
+    <parent link="vehicle_rear_axle_middle" />
+    <child link="gps_antenna_left" />
+	  <origin xyz="2.005 0.497 0.389" />
+  </joint>
+
+  <joint name="gps_antenna_top_joint" type="fixed">
+    <parent link="vehicle_rear_axle_middle" />
+    <child link="gps_antenna_top" />
+	  <origin xyz="1.242 0.0 0.956" />
+  </joint>
+</robot>

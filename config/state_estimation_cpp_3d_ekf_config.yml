@@ -1,0 +1,63 @@
+/core/state:
+  StateEstimation:
+    ros__parameters:
+      # Enable parameters
+      P_VDC_EnableMeasCovAdaptation_EKF: true
+      P_VDC_EnableInputCrossCorrelation: false     
+      P_VDC_InitializeWithVelocity: true
+
+      # orientation fusion parameters
+      P_VDC_FuseRoadAngles: false  # not implemented in published version
+      P_VDC_FuseRefAngles: true
+
+      # State Machine
+      # If less than x imus are valid the state machine returns an Error
+      P_VDC_MinValidIMUs: 1
+      P_VDC_SafeCovarianceThreshold: 0.1
+
+      # Outlier bounds - structure of the matrix follows lib_cpp/constants/state_estimation_constants
+      # (only used if P_VDC_EnableMahalanobisOutlierDetection == false)
+      P_VDC_OutlierBounds: [2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0,    # Odometry Measurement Position 1-3 x, y, z
+                            0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3,    # Odometry Measurement Orientation 1-3 phi, theta, psi
+                            0.3, 0.3, 0.3, 0.3, 0.3, 0.3,                   # Track Angle Measurement phi, theta, psi; Reference Angle Measurement phi, theta, psi
+                            2.0, 1.0, 2.0, 2.0, 1.0, 2.0, 2.0, 2.0, 2.0]    # Velocity Measurement 1-3 vx, vy, vz
+
+      # Diagonal elements of the Mahalanobis Covariance matrix - structure of the matrix follows lib_cpp/constants/state_estimation_constants
+      # (only used if P_VDC_EnableMahalanobisOutlierDetection == true)
+      P_VDC_MahalanobisCovariance: [5.0, 1.5, 4.0, 5.0, 1.5, 4.0, 5.0, 1.5, 4.0,  # Odometry Measurement Position 1-3 s, d, z
+                                    0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3,  # Odometry Measurement Orientation 1-3 phi, theta, psi
+                                    0.3, 0.3, 0.3, 0.3, 0.3, 0.3,                 # Track Angle Measurement phi, theta, psi; Reference Angle Measurement phi, theta, psi
+                                    5.0, 2.5, 5.0, 5.0, 2.5, 5.0, 2.0, 5.0, 5.0]  # Velocity Measurement 1-3 vx, vy, vz
+
+      P_VDC_EnableMahalanobisOutlierDetection: true
+      P_VDC_HardLinearVelocityOutlierTH: 3.0
+      P_VDC_HardAccelerometerOutlierTH: 500.0
+      P_VDC_HardAngularVelocityOutlierTH: 0.5
+      P_VDC_MaxConsecutiveVelHardOutliers: 250
+      P_VDC_MaxConsecutiveIMUHardOutliers: 50
+
+      # Measurement noise covariance - structure of the matrix follows lib_cpp/constants/state_estimation_constants
+      P_VDC_MeasCov: [0.01, 0.01, 0.04, 0.01, 0.01, 0.04, 0.02, 0.02, 0.08,                  # Odometry Measurement Position 1-3 x, y, z
+                      1.0e+9, 1.0e+9, 0.001, 1.0e+9, 1.0e+9, 0.001, 1.0e+9, 1.0e+9, 0.001,   # Odometry Measurement Orientation 1-3 phi, theta, psi
+                      0.0004, 0.0005, 1.0e+9, 0.04, 0.05, 1.0e+9,                            # Track Angle Measurement phi, theta, psi; Reference Angle Measurement phi, theta, psi
+                      0.1, 0.005, 0.1, 0.05, 0.01, 2.0, 0.1, 10.0, 2.0]                      # Velocity Measurement 1-3 vx, vy, vz
+
+      P_VDC_MeasC_lim: 1.500000
+      P_VDC_MeasC_decay: 0.001650
+
+      # Process noise covariance matrix - structure of the matrix follows lib_cpp/constants/state_estimation_constants
+      P_VDC_InputCov: [0.0075, 0.05, 0.0025, 0.5, 1.0, 2.0]                         # Roll-, Pitch-, Yaw-Rate, Acceleration x, y, z
+
+      # IMU FIR filter coefficients
+      P_VDC_IMU1_filter_coefficients: [0.07722183762197628, 0.24522338986219644, 0.34256086202951863, 0.24522338986219644, 0.07722183762197628]
+      P_VDC_IMU2_filter_coefficients: [0.07722183762197628, 0.24522338986219644, 0.34256086202951863, 0.24522338986219644, 0.07722183762197628]
+      P_VDC_IMU3_filter_coefficients: [0.07722183762197628, 0.24522338986219644, 0.34256086202951863, 0.24522338986219644, 0.07722183762197628]
+      P_VDC_IMU4_filter_coefficients: [0.07722183762197628, 0.24522338986219644, 0.34256086202951863, 0.24522338986219644, 0.07722183762197628]
+
+
+      # Initial IMU Bias 
+      P_VDC_InitialBias: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+      # Tyre parameters
+      tyreradius_front_m: 0.2958
+      tyreradius_rear_m: 0.3099

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>state_estimation_constants</name>
+  <version>0.0.1</version>
+  <description>state estimation cpp base classes</description>
+  <maintainer email="marcel.weinmann@tum.de">Marcel Weinmann</maintainer>
+  <license>LGPLv3</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_cmake_gtest</test_depend>
+  <test_depend>ament_cmake_clang_format</test_depend>
+  <test_depend>ament_cmake_cpplint</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

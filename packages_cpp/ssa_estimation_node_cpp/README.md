@@ -1,0 +1,2 @@
+## Side Slip Angle Estimation Node C++
+This ROS2 Node serves as an interface, receiving ROS2 messages and forwarding them to the side slip angle estimation classes implemented in pure C++, entirely free from ROS2 dependencies, located [here](/lib_cpp/ssa_estimation_cpp/).

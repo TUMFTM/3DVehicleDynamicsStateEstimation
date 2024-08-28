@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  state_publisher:
+    image: vdynse:v1
+    command: ros2 launch state_publisher state_publisher.py
+    network_mode: "host"
+    init: true
+    volumes:
+      - /var/run/lttng:/var/run/lttng
+      - /dev/shm:/dev/shm
+      - /tmp:/tmp
+    environment:
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID}
+  state_estimation:
+    image: vdynse:v1
+    command: bash -c "ros2 run --prefix 'chrt -rr 98' state_estimation_node_cpp state_estimation_node_cpp_ekf_3d_kin --ros-args --params-file /ws/config/state_estimation_cpp_3d_ekf_config.yml"
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - ../config:/ws/config
+      - /var/run/lttng:/var/run/lttng
+      - /dev/shm:/dev/shm
+      - /tmp:/tmp
+    init: true
+    environment:
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID}
+  ssa_estimation:
+    image: vdynse:v1
+    command: bash -c "ros2 run --prefix 'chrt -rr 90' ssa_estimation_node_cpp ssa_estimation_node --ros-args --params-file /ws/config/ssa_estimation_ukf_config.yml"
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - ../config:/ws/config
+      - /var/run/lttng:/var/run/lttng
+      - /dev/shm:/dev/shm
+      - /tmp:/tmp
+    init: true
+    environment:
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID}

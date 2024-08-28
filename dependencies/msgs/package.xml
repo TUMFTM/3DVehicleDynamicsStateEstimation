@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>msgs</name>
+  <version>0.0.1</version>
+  <description>additional message definitions</description>
+  <maintainer email="sven.goblirsch@tum.de">Sven Goblirsch</maintainer>
+  <license>LGPLv3</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>rclcpp</build_depend>
+  <build_depend>builtin_interfaces</build_depend>
+  <build_depend>rosidl_default_generators</build_depend>
+  <build_depend>std_msgs</build_depend>
+  
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>builtin_interfaces</exec_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <export><build_type>ament_cmake</build_type></export>
+</package>
